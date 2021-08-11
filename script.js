@@ -89,7 +89,7 @@ function updateBestScore() {
 
 // Reset Game to play again
 function playAgain() {
-  gamePage.addEventListener('mouseover', startTimer);
+  // gamePage.addEventListener('click', startTimer); // removed as not using click event listener which wasnt functioning on time for mobile devices
   scorePage.hidden = true;
   splashPage.hidden = false;
   equationsArray = [];
@@ -158,8 +158,8 @@ function startTimer() {
   timePlayed = 0;
   penaltyTime = 0;
   finalTime = 0;
-  timer = setInterval(addTime, 100);
-  gamePage.removeEventListener('mouseover', startTimer); // so that this event function only starts once
+  timer = setInterval(addTime, 100); // set intervals of tenth of a second to execute function addTime
+  // gamePage.removeEventListener('click', startTimer); // so that this event function only starts once // Now removed as not using click listener
 }
 
 // scroll, store user selection in the playerGuessArray
@@ -174,8 +174,8 @@ function select(guessedTrue) {
 
 //Displays Game Page
 function showGamePage() {
-  gamePage.hidden = false;
-  countdownPage.hidden = true; //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    gamePage.hidden = false;
+  countdownPage.hidden = true; 
 }
 
 // Get Random Number up to a max number
@@ -266,6 +266,7 @@ function countdownStart() {
       countdown.textContent = 'Go!';
     } else if (count === -1) {
       showGamePage();
+      startTimer();
       clearInterval(timeCountDown);
     } else {
       countdown.textContent = count;
@@ -327,7 +328,7 @@ startForm.addEventListener('click', () => {
 
 // Event Listeners
 startForm.addEventListener('submit', selectQuestionAmount);
-gamePage.addEventListener('mouseover', startTimer);
+// gamePage.addEventListener('click', startTimer); // removed this listener as it will not work on mobile devices
 
 //Onload
 getSavedBestScores();
